@@ -4,11 +4,11 @@
 
 ![Shopping cart Demo](demo/demo.gif)
 
-Link: [rashmichandran.github.io/reactjs-shopping-cart/](https://rashmichandran.github.io/reactjs-shopping-cart/)
+Link: [ravi-mone.github.io/reactjs-shopping-cart/](https://ravi-mone.github.io/reactjs-shopping-cart/)
 
 ## Technology included:
 
-- Axios 
+- Axios
 - Tailwind CSS
 - Context API
 - React icons
@@ -20,7 +20,6 @@ Link: [rashmichandran.github.io/reactjs-shopping-cart/](https://rashmichandran.g
 - Cart Page
 - Add more quantities from Product Page
 - Sort based on Product Price
-
 
 # Getting Started with Create React App
 
