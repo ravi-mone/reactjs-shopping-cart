@@ -4,8 +4,6 @@
 
 ![Shopping cart Demo](demo/demo.gif)
 
-Link: [ravi-mone.github.io/reactjs-shopping-cart/](https://ravi-mone.github.io/reactjs-shopping-cart/)
-
 ## Technology included:
 
 - Axios
