@@ -2,7 +2,7 @@
   "name": "reactjs-shopping-cart",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rashmichandran.github.io/reactjs-shopping-cart/",
+  "homepage": "https://ravi-mone.github.io/reactjs-shopping-cart/",
   "dependencies": {
     "@craco/craco": "^6.1.2",
     "@testing-library/jest-dom": "^5.12.0",
