@@ -2,7 +2,7 @@
 
 ## Demo
 
-![Shopping cart Demo](demo/demo.gif)
+![Shopping cart Demo](demo/demo.png)
 
 ## Technology included:
 
