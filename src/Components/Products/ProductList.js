@@ -15,11 +15,11 @@ import Axios from "axios";
 
 import { FETCH_PRODUCTS } from "../../Services/Product/action-types";
 import SyncLoader from "react-spinners/SyncLoader";
-import "./ProductList.css"
+import "./css/ProductList.css";
 const ProductList = () => {
   const { cartItem, dispatch } = useContext(CartContext);
-  const {products, productDispatch} = useContext(ProductContext);
-    const fetchProducts = async () => {
+  const { products, productDispatch } = useContext(ProductContext);
+  const fetchProducts = async () => {
     const { data } = await Axios.get(productURL, {
       headers: {
         Authorization: apiKey,
@@ -35,7 +35,7 @@ const ProductList = () => {
       productPrice: commerce.price(),
       count: 0,
       id: datatype.uuid(),
-      age: datatype.number(6)
+      age: datatype.number(6),
     }));
     productDispatch({
       type: FETCH_PRODUCTS,
@@ -47,9 +47,9 @@ const ProductList = () => {
     fetchProducts();
   }, []);
 
-  useEffect(()=>{
-    console.log("Cart item updated")
-  },[cartItem])
+  useEffect(() => {
+    console.log("Cart item updated");
+  }, [cartItem]);
   const addToCart = (item) => {
     item.isAddedtoCart = true;
     item.count = 1;
@@ -88,25 +88,28 @@ const ProductList = () => {
       payload: item,
     });
   };
-    return (
-      <div>
-        <div className="grid lg:grid-cols-4 gap-4 md:grid-cols-3 sm:grid-cols-2 px-4">
-          {products.items !== undefined
-            ? products.items.map((item) => (
-                <Product
-                  key={item.id}
-                  product={item}
-                  addToCart={addToCart}
-                  removeFromCart={removeFromCart}
-                  incrementItem={incrementItem}
-                  decrementItem={decrementItem}
-                />
-              ))
-            :  <div  className="spinner-container"><SyncLoader color="#10b981"/></div>}
-           
-        </div>
+  return (
+    <div>
+      <div className="grid lg:grid-cols-4 gap-4 md:grid-cols-3 sm:grid-cols-2 px-4">
+        {products.items !== undefined ? (
+          products.items.map((item) => (
+            <Product
+              key={item.id}
+              product={item}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+              incrementItem={incrementItem}
+              decrementItem={decrementItem}
+            />
+          ))
+        ) : (
+          <div className="spinner-container">
+            <SyncLoader color="#10b981" />
+          </div>
+        )}
       </div>
-    );
+    </div>
+  );
 };
 
 export default ProductList;

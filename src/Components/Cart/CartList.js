@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./CartList.css";
 import { CartContext } from "../../Services/Cart/CartContext";
 import CartItem from "./CartItem";
 import { MdClose } from "react-icons/md";
 import { REMOVE_CART_ITEM } from "../../Services/Cart/action-types";
 import { FaCartPlus } from "react-icons/fa";
+import "./css/CartList.css";
 
 const CartList = ({ closeCart, show }) => {
-  const showHideClassName = show ? "modal display-block" : "modal display-none";
   const { cartItem, dispatch } = useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalCartItems, setTotalCartItems] = useState(0);
@@ -35,11 +34,11 @@ const CartList = ({ closeCart, show }) => {
     });
   };
 
-  const checkout = ()=>{
-      alert("Checkout: Subtotal ₹"+totalPrice)
-  }
+  const checkout = () => {
+    alert("Checkout: Subtotal ₹" + totalPrice);
+  };
   return (
-    <div className={showHideClassName}>
+    <div className={show ? "modal display-block" : "modal display-none"}>
       <div className="absolute right-3 top-6">
         <button onClick={() => closeCart()} className="focus:outline-none">
           <MdClose className="w-5 h-5" />
@@ -50,34 +49,46 @@ const CartList = ({ closeCart, show }) => {
         <span className="cart-count">{totalCartItems}</span>
         <h1 className="text-lg font-bold ml-2">Cart</h1>
       </div>
-      <div className="cart-container">
-        {cartItem.length > 0 ? (
-          <div>
-            {cartItem.map((items) => (
-              <CartItem
-                cartObj={items}
-                key={items.id}
-                removeFromCart={removeFromCart}
-              />
-            ))}
-          </div>
-        ) : (
-          <p className="p-10 text-red-500 decoration-clone font-semibold">
-            Your cart is empty
-          </p>
-        )}
-      </div>
-      <div className="checkout-container">
-        <div className="flex place-content-between mb-5">
-          <h1>Total</h1>{" "}
-          <p className="text-green-700 font-medium items-end text-xl">
-            ₹{totalPrice}
-          </p>
-        </div>
-        <button className="checkout-btn btn-green" onClick={()=> checkout()}>Checkout</button>
-      </div>
+      <ShowCartItems cartItem={cartItem} removeFromCart={removeFromCart} />
+      <CheckoutButton totalPrice={totalPrice} checkout={checkout} />
     </div>
   );
 };
+function CheckoutButton({ totalPrice, checkout }) {
+  return (
+    <div className="checkout-container">
+      <div className="flex place-content-between mb-5">
+        <h1>Total</h1>{" "}
+        <p className="text-green-700 font-medium items-end text-xl">
+          ₹{totalPrice}
+        </p>
+      </div>
+      <button className="checkout-btn btn-green" onClick={() => checkout()}>
+        Checkout
+      </button>
+    </div>
+  );
+}
+function ShowCartItems({ cartItem, removeFromCart }) {
+  return (
+    <div className="cart-container">
+      {cartItem.length > 0 ? (
+        <div>
+          {cartItem.map((items) => (
+            <CartItem
+              cartObj={items}
+              key={items.id}
+              removeFromCart={removeFromCart}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="p-10 text-red-500 decoration-clone font-semibold">
+          Your cart is empty
+        </p>
+      )}
+    </div>
+  );
+}
 
 export default CartList;
